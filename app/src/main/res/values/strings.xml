@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Alarma rápida</string>
+    <string name="stop">DETENER</string>
+    <string name="snooze">POSPONER</string>
+</resources>
