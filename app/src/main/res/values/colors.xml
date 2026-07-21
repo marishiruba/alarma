@@ -1,5 +1,5 @@
 <resources>
-    <color name="launcher_background">#FFFFFF</color>
+    <color name="launcher_background">#3D7BFF</color>
     <color name="blue_primary">#3D7BFF</color>
     <color name="blue_light_card">#E9F0FF</color>
     <color name="grey_text">#8A8A8E</color>

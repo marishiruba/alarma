@@ -1,6 +1,7 @@
 package com.miapp.alarmas.ui.alarm
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -51,6 +52,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.miapp.alarmas.data.AlarmEntity
@@ -232,6 +234,15 @@ private fun AlarmCard(
 
 @Composable
 private fun AlarmBottomBar() {
+    var selectedIndex by remember { mutableStateOf(0) }
+    val icons = listOf(
+        Icons.Filled.Alarm,
+        Icons.Filled.Bedtime,
+        Icons.Filled.Notifications,
+        Icons.Filled.HourglassEmpty,
+        Icons.Filled.Timer
+    )
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -240,17 +251,29 @@ private fun AlarmBottomBar() {
             .padding(vertical = 10.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        BottomBarItem(Icons.Filled.Alarm, selected = true)
-        BottomBarItem(Icons.Filled.Bedtime, selected = false)
-        BottomBarItem(Icons.Filled.Notifications, selected = false)
-        BottomBarItem(Icons.Filled.HourglassEmpty, selected = false)
-        BottomBarItem(Icons.Filled.Timer, selected = false)
+        icons.forEachIndexed { index, icon ->
+            BottomBarItem(
+                icon = icon,
+                selected = selectedIndex == index,
+                onClick = { selectedIndex = index }
+            )
+        }
     }
 }
 
 @Composable
-private fun RowScope.BottomBarItem(icon: androidx.compose.ui.graphics.vector.ImageVector, selected: Boolean) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+private fun RowScope.BottomBarItem(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 12.dp, vertical = 4.dp)
+    ) {
         Icon(
             icon,
             contentDescription = null,
