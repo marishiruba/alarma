@@ -31,6 +31,7 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
@@ -60,6 +61,7 @@ import com.miapp.alarmas.ui.theme.GreyText
 import com.miapp.alarmas.ui.theme.TrackOff
 import com.miapp.alarmas.util.TimeUtils
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AlarmListScreen(
     viewModel: AlarmListViewModel,
